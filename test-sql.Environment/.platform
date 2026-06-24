@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Environment",
+    "displayName": "test-sql",
+    "description": "Environment"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "08c2927f-be46-b9e6-4e17-c4098c5df14d"
+  }
+}
