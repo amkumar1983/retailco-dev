@@ -30,7 +30,6 @@
 # Type here in the cell editor to add code!
 
 #load the three dimensions (clean already) as Delta:
-DimName="customer"
 spark.read.option("header",True).option("inferSchema",True).csv(f"Files/bronze/dim_{DimName}.csv").write.mode("overwrite").format("delta").saveAsTable(f"silver_dim_{DimName}")
 
 # METADATA ********************

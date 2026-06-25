@@ -58,9 +58,10 @@ clean = (raw
     )
 
 clean.write.mode("overwrite").option("overwriteschema",True).format("delta").saveAsTable("silver_sales")
-print("Silver rows:", spark.table("silver_sales").count())
+#print("Silver rows:", spark.table("silver_sales").count())
 
-display(clean)
+row_count = spark.table("silver_sales").count()
+mssparkutils.notebook.exit(str(row_count))
 
 # METADATA ********************
 

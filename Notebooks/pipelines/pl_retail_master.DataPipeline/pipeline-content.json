@@ -155,7 +155,8 @@
               }
             },
             "annotations": []
-          }
+          },
+          "firstRowOnly": true
         },
         "policy": {
           "timeout": "0.12:00:00",
@@ -167,7 +168,7 @@
         "name": "silver_count",
         "dependsOn": [
           {
-            "activity": "Run_Bronze_to_Silver",
+            "activity": "silver_rows_count",
             "dependencyConditions": [
               "Succeeded"
             ]
@@ -201,14 +202,15 @@
             {
               "type": "Office365Email",
               "typeProperties": {
-                "to": "amit@yahoo.com",
+                "body": "<p>@{pipeline().Pipeline}</p>",
+                "to": "amit.1raj@gmail.com",
                 "subject": {
                   "value": "@concat('RetailCo pipeline Successfull:- silver row count' ,variables('silverRows'))",
                   "type": "Expression"
                 }
               },
               "externalReferences": {
-                "connection": "this is dynamic"
+                "connection": "fb9eef3f-5b2d-48ac-89d5-7b78ae575a76"
               },
               "policy": {
                 "timeout": "0.12:00:00",
@@ -269,7 +271,7 @@
         "typeProperties": {
           "variableName": "silverRows",
           "value": {
-            "value": "@activity('silver_count').output",
+            "value": "@activity('Run_Bronze_to_Silver').output.result.exitValue",
             "type": "Expression"
           }
         },
@@ -277,10 +279,10 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "silver_row_count",
+        "name": "silver_rows_count",
         "dependsOn": [
           {
-            "activity": "silver_count",
+            "activity": "Run_Bronze_to_Silver",
             "dependencyConditions": [
               "Succeeded"
             ]
